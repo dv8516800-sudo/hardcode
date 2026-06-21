@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
     image: lightpanda-minimal:latest
     ports:
-      - "127.0.0.1:9222:9222"
+      - "127.0.0.1:9222-9223:9222"
     deploy:
       replicas: 2
       resources:
