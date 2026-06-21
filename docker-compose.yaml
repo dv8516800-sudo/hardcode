@@ -1,0 +1,21 @@
+services:
+  lightpanda:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: lightpanda-minimal:latest
+    ports:
+      - "127.0.0.1:9222:9222"
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 64M
+    restart: always
+    healthcheck:
+      test: ["CMD", "nc", "-z", "127.0.0.1", "9222"]
+      interval: 5s
+      timeout: 2s
+      retries: 5
+      start_period: 1s
