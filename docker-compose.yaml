@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  lightpanda:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9222:9222"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 64M
+    restart: always
+    healthcheck:
+      test: ["CMD", "nc", "-z", "127.0.0.1", "9222"]
+      interval: 5s
+      timeout: 2s
+      retries: 3
+      start_period: 1s
